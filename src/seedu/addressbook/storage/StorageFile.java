@@ -53,6 +53,12 @@ public class StorageFile {
     public StorageFile() throws InvalidStorageFilePathException {
         this(DEFAULT_STORAGE_FILEPATH);
     }
+    
+    public void checkStorageFile() throws FileNotFoundException {
+    	if(!path.toFile().exists()) {
+    		throw new FileNotFoundException("Storage file is not found. It may be deleted.");
+    	}
+    }
 
     /**
      * @throws InvalidStorageFilePathException if the given file path is invalid
@@ -63,7 +69,6 @@ public class StorageFile {
         } catch (JAXBException jaxbe) {
             throw new RuntimeException("jaxb initialisation error");
         }
-
         path = Paths.get(filePath);
         if (!isValidPath(path)) {
             throw new InvalidStorageFilePathException("Storage file should end with '.txt'");
