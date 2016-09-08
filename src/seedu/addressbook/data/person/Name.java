@@ -66,7 +66,15 @@ public class Name {
      * Two names are considered similar if ...
      */
      public boolean isSimilar(Name other) {
-    	 return true;
+    	 String s1 = this.fullName.toLowerCase();
+    	 String s2 = other.toString().toLowerCase();
+    	 
+    	 if ((s1.contains(s2) || s2.contains(s1)) 
+    			 && Math.abs(s1.length() - s2.length()) <= 5) {
+    		 return true;
+    	 }
+    	 
+    	 return false;
      }
 
 }
